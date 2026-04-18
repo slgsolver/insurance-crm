@@ -78,6 +78,9 @@ class CRMApp {
         this.breadcrumbCurrent = document.getElementById('breadcrumb-current');
         this.btnGlobalAdd = document.getElementById('btn-add-global');
         this.searchInput = document.querySelector('.search-bar input');
+        this.sidebar = document.querySelector('.sidebar');
+        this.menuToggle = document.getElementById('menu-toggle');
+        this.sidebarOverlay = document.getElementById('sidebar-overlay');
         
         // Modal elements
         this.modalOverlay = document.getElementById('modal-container');
@@ -94,8 +97,18 @@ class CRMApp {
                 e.preventDefault();
                 const view = item.getAttribute('data-view');
                 this.switchView(view);
+                // Auto-close sidebar on mobile after navigation
+                this.closeMobileMenu();
             });
         });
+
+        // Mobile hamburger menu
+        if (this.menuToggle) {
+            this.menuToggle.addEventListener('click', () => this.toggleMobileMenu());
+        }
+        if (this.sidebarOverlay) {
+            this.sidebarOverlay.addEventListener('click', () => this.closeMobileMenu());
+        }
 
         this.btnGlobalAdd.addEventListener('click', () => this.openAddModal());
         this.searchInput.addEventListener('input', (e) => {
@@ -105,6 +118,16 @@ class CRMApp {
         this.btnCloseModal.addEventListener('click', () => this.closeModal());
         this.btnCancelModal.addEventListener('click', () => this.closeModal());
         this.btnSaveModal.addEventListener('click', () => this.handleSave());
+    }
+
+    toggleMobileMenu() {
+        this.sidebar.classList.toggle('open');
+        this.sidebarOverlay.classList.toggle('active');
+    }
+
+    closeMobileMenu() {
+        this.sidebar.classList.remove('open');
+        this.sidebarOverlay.classList.remove('active');
     }
 
     saveState() {
