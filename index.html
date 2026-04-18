@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Insurance CRM | Notion Style</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -47,9 +47,7 @@
                     <a href="#" class="nav-item" data-view="goals">
                         <i data-lucide="target"></i> Goals
                     </a>
-                    <a href="#" class="nav-item" data-view="export">
-                        <i data-lucide="share"></i> Export to Notion
-                    </a>
+
                 </div>
             </nav>
             
@@ -64,13 +62,21 @@
             </div>
         </aside>
 
+        <!-- Sidebar Overlay (mobile tap-to-close) -->
+        <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
         <!-- Main Content -->
         <main class="main-wrapper">
             <header class="top-header">
-                <div class="breadcrumb">
-                    <span id="breadcrumb-parent">Main</span>
-                    <span class="separator">/</span>
-                    <span id="breadcrumb-current">Dashboard</span>
+                <div style="display:flex; align-items:center; gap:4px;">
+                    <button class="menu-toggle" id="menu-toggle" aria-label="Open menu">
+                        <i data-lucide="menu"></i>
+                    </button>
+                    <div class="breadcrumb">
+                        <span id="breadcrumb-parent">Main</span>
+                        <span class="separator">/</span>
+                        <span id="breadcrumb-current">Dashboard</span>
+                    </div>
                 </div>
                 <div class="header-actions">
                     <div class="search-bar">
@@ -78,7 +84,7 @@
                         <input type="text" placeholder="Search everything...">
                     </div>
                     <button class="btn btn-primary" id="btn-add-global">
-                        <i data-lucide="plus"></i> New
+                        <i data-lucide="plus"></i> <span>New</span>
                     </button>
                 </div>
             </header>
